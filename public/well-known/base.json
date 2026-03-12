@@ -1,0 +1,9 @@
+{
+  "name": "My Base App",
+  "description": "Simple Base Sepolia dApp with wallet and transactions",
+  "icon": "https://my-base-app-seven.vercel.app/og-image.png",
+  "url": "https://my-base-app-seven.vercel.app",
+  "developer": {
+    "name": "My Base App Dev"
+  }
+}
