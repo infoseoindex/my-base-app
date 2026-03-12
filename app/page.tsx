@@ -1,65 +1,91 @@
-import Image from "next/image";
+import ConnectWallet from "@/components/ConnectWallet";
+
+function BitcoinLogo() {
+  return (
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 shadow-lg">
+      <span className="text-2xl font-bold text-white">₿</span>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen overflow-hidden bg-gradient-to-br from-orange-100 via-white to-blue-100">
+      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8">
+        <header className="mb-10 flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <BitcoinLogo />
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+                Base App
+              </p>
+              <h1 className="text-2xl font-bold text-zinc-900">My Base App</h1>
+            </div>
+          </div>
+
+          <div className="rounded-full border border-orange-200 bg-white/70 px-4 py-2 text-sm text-zinc-600 shadow-sm backdrop-blur">
+            Base Sepolia
+          </div>
+        </header>
+
+        <section className="flex flex-1 items-center justify-center">
+          <div className="grid w-full items-center gap-8 lg:grid-cols-2">
+            <div className="space-y-6">
+              <div className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-medium text-orange-700">
+                Wallet • Transactions • Base
+              </div>
+
+              <div>
+                <h2 className="text-5xl font-extrabold leading-tight text-zinc-900">
+                  Яркий старт для твоего
+                  <span className="block bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
+                    Base dApp
+                  </span>
+                </h2>
+
+                <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-600">
+                  Подключай кошелёк, смотри баланс и отправляй транзакции в сети
+                  Base Sepolia через аккуратный и современный интерфейс.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
+                  ⚡ Быстрое подключение
+                </div>
+                <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
+                  🔐 Кошелёк и сеть
+                </div>
+                <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
+                  🚀 Первая транзакция
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-orange-300/40 blur-2xl" />
+              <div className="absolute -bottom-8 -right-6 h-28 w-28 rounded-full bg-blue-300/40 blur-2xl" />
+
+              <div className="relative rounded-[32px] border border-white/60 bg-white/80 p-8 shadow-2xl backdrop-blur">
+                <div className="mb-6 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-zinc-500">Dashboard</p>
+                    <h3 className="text-2xl font-bold text-zinc-900">
+                      Wallet Panel
+                    </h3>
+                  </div>
+
+                  <div className="rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow">
+                    Live
+                  </div>
+                </div>
+
+                <ConnectWallet />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
