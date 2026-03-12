@@ -4,7 +4,27 @@ import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "My Base App",
-  description: "Built on Base",
+  description: "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
+  openGraph: {
+    title: "My Base App",
+    description:
+      "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "My Base App",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "My Base App",
+    description:
+      "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body>
         <Providers>{children}</Providers>
       </body>

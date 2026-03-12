@@ -1,5 +1,4 @@
 import ConnectWallet from "@/components/ConnectWallet";
-import MiniAppReady from "@/components/MiniAppReady";
 
 function BitcoinLogo() {
   return (
@@ -12,8 +11,6 @@ function BitcoinLogo() {
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-gradient-to-br from-orange-100 via-white to-blue-100">
-      <MiniAppReady />
-
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8">
         <header className="mb-10 flex items-start justify-between">
           <div className="flex items-center gap-3">
