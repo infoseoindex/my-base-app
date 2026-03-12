@@ -4,11 +4,10 @@ import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "My Base App",
-  description: "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
+  description: "Simple Base Sepolia dApp with wallet and transaction",
   openGraph: {
     title: "My Base App",
-    description:
-      "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
+    description: "Simple Base Sepolia dApp with wallet and transaction",
     images: [
       {
         url: "/og-image.png",
@@ -18,12 +17,8 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "My Base App",
-    description:
-      "Красивое приложение на Base Sepolia с кошельком и транзакцией.",
-    images: ["/og-image.png"],
+  other: {
+    "base:app_id": "69b34c70b0c19c0fc281a8d3",
   },
 };
 
