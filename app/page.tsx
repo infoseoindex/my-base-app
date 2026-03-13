@@ -1,4 +1,5 @@
 import ConnectWallet from "@/components/ConnectWallet";
+import MintNFT from "@/components/MintNFT";
 
 function BitcoinLogo() {
   return (
@@ -29,23 +30,23 @@ export default function Home() {
         </header>
 
         <section className="flex flex-1 items-center justify-center">
-          <div className="grid w-full items-center gap-8 lg:grid-cols-2">
+          <div className="grid w-full items-start gap-8 lg:grid-cols-2">
             <div className="space-y-6">
               <div className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-medium text-orange-700">
-                Wallet • Transactions • Base
+                Wallet • Transactions • NFTs • Base
               </div>
 
               <div>
                 <h2 className="text-5xl font-extrabold leading-tight text-zinc-900">
                   Яркий старт для твоего
                   <span className="block bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                    Base dApp
+                    Base NFT dApp
                   </span>
                 </h2>
 
                 <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-600">
-                  Подключай кошелёк, смотри баланс и отправляй транзакции в сети
-                  Base Sepolia через аккуратный и современный интерфейс.
+                  Подключай кошелёк, отправляй транзакции и выпускай собственные
+                  NFT в сети Base Sepolia через современный интерфейс.
                 </p>
               </div>
 
@@ -54,10 +55,10 @@ export default function Home() {
                   ⚡ Быстрое подключение
                 </div>
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
-                  🔐 Кошелёк и сеть
+                  🚀 Транзакции
                 </div>
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
-                  🚀 Первая транзакция
+                  🖼️ Mint NFT
                 </div>
               </div>
             </div>
@@ -71,7 +72,7 @@ export default function Home() {
                   <div>
                     <p className="text-sm text-zinc-500">Dashboard</p>
                     <h3 className="text-2xl font-bold text-zinc-900">
-                      Wallet Panel
+                      Wallet + NFT Panel
                     </h3>
                   </div>
 
@@ -81,6 +82,7 @@ export default function Home() {
                 </div>
 
                 <ConnectWallet />
+                <MintNFT />
               </div>
             </div>
           </div>
