@@ -1,5 +1,6 @@
 import ConnectWallet from "@/components/ConnectWallet";
 import MintNFT from "@/components/MintNFT";
+import NFTGallery from "@/components/NFTGallery";
 
 function BitcoinLogo() {
   return (
@@ -29,11 +30,11 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="flex flex-1 items-center justify-center">
+        <section className="flex flex-1 items-start justify-center">
           <div className="grid w-full items-start gap-8 lg:grid-cols-2">
             <div className="space-y-6">
               <div className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-medium text-orange-700">
-                Wallet • Transactions • NFTs • Base Mainnet
+                Wallet • Transactions • NFTs • Gallery • Base Mainnet
               </div>
 
               <div>
@@ -45,8 +46,8 @@ export default function Home() {
                 </h2>
 
                 <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-600">
-                  Подключай кошелёк, отправляй транзакции и выпускай NFT уже в
-                  основной сети Base.
+                  Подключай кошелёк, отправляй транзакции, выпускай NFT и смотри
+                  свою коллекцию прямо внутри приложения.
                 </p>
               </div>
 
@@ -59,6 +60,9 @@ export default function Home() {
                 </div>
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
                   🖼️ Mint NFT
+                </div>
+                <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
+                  🧾 NFT Gallery
                 </div>
               </div>
             </div>
@@ -83,6 +87,7 @@ export default function Home() {
 
                 <ConnectWallet />
                 <MintNFT />
+                <NFTGallery />
               </div>
             </div>
           </div>
