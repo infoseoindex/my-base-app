@@ -7,9 +7,9 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
-import { baseSepolia } from "wagmi/chains";
+import { base } from "wagmi/chains";
 
-const CONTRACT_ADDRESS = "0xcCae0F62D781152594277191240B8d438EE2e4Bb";
+const CONTRACT_ADDRESS = "PASTE_YOUR_BASE_MAINNET_CONTRACT_ADDRESS_HERE";
 
 const CONTRACT_ABI = [
   {
@@ -44,17 +44,19 @@ export default function MintNFT() {
       hash,
     });
 
-  const isCorrectNetwork = chainId === baseSepolia.id;
+  const isCorrectNetwork = chainId === base.id;
+  const isContractSet =
+    CONTRACT_ADDRESS !== "PASTE_YOUR_BASE_MAINNET_CONTRACT_ADDRESS_HERE";
 
   const handleMint = () => {
-    if (!address) return;
+    if (!address || !isContractSet) return;
 
     writeContract({
-      address: CONTRACT_ADDRESS,
+      address: CONTRACT_ADDRESS as `0x${string}`,
       abi: CONTRACT_ABI,
       functionName: "mint",
       args: [address, tokenUri],
-      chain: baseSepolia,
+      chain: base,
     });
   };
 
@@ -63,19 +65,21 @@ export default function MintNFT() {
       <div>
         <h3 className="text-xl font-bold text-zinc-900">Mint NFT</h3>
         <p className="mt-1 text-sm text-zinc-600">
-          Выпусти свой первый NFT через контракт на Base Sepolia.
+          Выпусти NFT через контракт в основной сети Base.
         </p>
       </div>
 
       {!isConnected && (
-        <p className="text-sm text-red-600">
-          Сначала подключи кошелёк.
-        </p>
+        <p className="text-sm text-red-600">Сначала подключи кошелёк.</p>
       )}
 
       {isConnected && !isCorrectNetwork && (
+        <p className="text-sm text-red-600">Переключи сеть на Base Mainnet.</p>
+      )}
+
+      {!isContractSet && (
         <p className="text-sm text-red-600">
-          Переключи сеть на Base Sepolia.
+          Сначала вставь адрес mainnet-контракта в файл MintNFT.tsx
         </p>
       )}
 
@@ -92,7 +96,13 @@ export default function MintNFT() {
 
       <button
         onClick={handleMint}
-        disabled={!isConnected || !isCorrectNetwork || isMinting || isConfirming}
+        disabled={
+          !isConnected ||
+          !isCorrectNetwork ||
+          !isContractSet ||
+          isMinting ||
+          isConfirming
+        }
         className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 px-4 py-3 font-semibold text-white shadow disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isMinting
@@ -115,11 +125,7 @@ export default function MintNFT() {
         </p>
       )}
 
-      {error && (
-        <p className="text-sm text-red-600">
-          {error.message}
-        </p>
-      )}
+      {error && <p className="text-sm text-red-600">{error.message}</p>}
     </div>
   );
 }

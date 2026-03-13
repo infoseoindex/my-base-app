@@ -25,7 +25,7 @@ export default function Home() {
           </div>
 
           <div className="rounded-full border border-orange-200 bg-white/70 px-4 py-2 text-sm text-zinc-600 shadow-sm backdrop-blur">
-            Base Sepolia
+            Base Mainnet
           </div>
         </header>
 
@@ -33,29 +33,29 @@ export default function Home() {
           <div className="grid w-full items-start gap-8 lg:grid-cols-2">
             <div className="space-y-6">
               <div className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-medium text-orange-700">
-                Wallet • Transactions • NFTs • Base
+                Wallet • Transactions • NFTs • Base Mainnet
               </div>
 
               <div>
                 <h2 className="text-5xl font-extrabold leading-tight text-zinc-900">
-                  Яркий старт для твоего
+                  Ончейн-приложение в
                   <span className="block bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                    Base NFT dApp
+                    Base Mainnet
                   </span>
                 </h2>
 
                 <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-600">
-                  Подключай кошелёк, отправляй транзакции и выпускай собственные
-                  NFT в сети Base Sepolia через современный интерфейс.
+                  Подключай кошелёк, отправляй транзакции и выпускай NFT уже в
+                  основной сети Base.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
-                  ⚡ Быстрое подключение
+                  ⚡ Подключение кошелька
                 </div>
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
-                  🚀 Транзакции
+                  💸 Mainnet-транзакции
                 </div>
                 <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-sm text-zinc-700 shadow-sm backdrop-blur">
                   🖼️ Mint NFT
@@ -77,7 +77,7 @@ export default function Home() {
                   </div>
 
                   <div className="rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow">
-                    Live
+                    Mainnet
                   </div>
                 </div>
 

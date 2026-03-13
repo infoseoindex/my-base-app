@@ -9,19 +9,24 @@ import {
   useSendTransaction,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { baseSepolia } from "wagmi/chains";
+import { base } from "wagmi/chains";
 import { formatUnits, parseEther } from "viem";
 
 export default function ConnectWallet() {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
-  const { connect, connectors, isPending } = useConnect();
+  const {
+    connect,
+    connectors,
+    isPending,
+    error: connectError,
+  } = useConnect();
   const { disconnect } = useDisconnect();
 
   const { data: balance, isLoading: balanceLoading, error: balanceError } =
     useBalance({
       address,
-      chainId: baseSepolia.id,
+      chainId: base.id,
       query: {
         enabled: Boolean(address),
       },
@@ -44,19 +49,25 @@ export default function ConnectWallet() {
       ? Number(formatUnits(balance.value, balance.decimals)).toFixed(6)
       : null;
 
+  const isCorrectNetwork = chainId === base.id;
+
   const handleSendTransaction = () => {
     if (!address) return;
 
     sendTransaction({
       to: address,
       value: parseEther("0.000001"),
-      chainId: baseSepolia.id,
+      chainId: base.id,
     });
   };
 
-  if (isConnected) {
-    const isCorrectNetwork = chainId === baseSepolia.id;
+  const getConnectorLabel = (name: string) => {
+    if (name.toLowerCase().includes("base")) return "Connect Base Account";
+    if (name.toLowerCase().includes("injected")) return "Connect Browser Wallet";
+    return `Connect ${name}`;
+  };
 
+  if (isConnected) {
     return (
       <div className="flex flex-col items-center gap-4 rounded-2xl border p-6">
         <p className="text-lg font-semibold text-green-600">
@@ -70,7 +81,7 @@ export default function ConnectWallet() {
 
         <div className="text-center">
           <p className="text-sm text-gray-500">Сеть</p>
-          <p>{isCorrectNetwork ? "Base Sepolia" : `Chain ID: ${chainId}`}</p>
+          <p>{isCorrectNetwork ? "Base Mainnet" : `Chain ID: ${chainId}`}</p>
         </div>
 
         <div className="text-center">
@@ -87,9 +98,7 @@ export default function ConnectWallet() {
         </div>
 
         {!isCorrectNetwork && (
-          <p className="text-sm text-red-600">
-            Переключи кошелёк на Base Sepolia
-          </p>
+          <p className="text-sm text-red-600">Переключи сеть на Base Mainnet</p>
         )}
 
         <button
@@ -135,6 +144,12 @@ export default function ConnectWallet() {
 
   return (
     <div className="flex flex-col items-center gap-4">
+      {connectors.length === 0 && (
+        <p className="text-sm text-red-600">
+          Коннекторы не найдены. Проверь кошелёк или открой app в Base App.
+        </p>
+      )}
+
       {connectors.map((connector) => (
         <button
           key={connector.uid}
@@ -142,9 +157,15 @@ export default function ConnectWallet() {
           disabled={isPending}
           className="rounded bg-blue-500 px-4 py-2 text-white disabled:opacity-50"
         >
-          {isPending ? "Подключение..." : `Connect ${connector.name}`}
+          {isPending ? "Подключение..." : getConnectorLabel(connector.name)}
         </button>
       ))}
+
+      {connectError && (
+        <p className="max-w-md text-center text-sm text-red-600">
+          {connectError.message}
+        </p>
+      )}
     </div>
   );
 }
