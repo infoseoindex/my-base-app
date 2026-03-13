@@ -40,11 +40,9 @@ type NFTItem = {
 
 function normalizeUrl(url?: string) {
   if (!url) return "";
-
   if (url.startsWith("ipfs://")) {
     return url.replace("ipfs://", "https://ipfs.io/ipfs/");
   }
-
   return url;
 }
 
@@ -56,6 +54,7 @@ export default function NFTGallery() {
   const [nfts, setNfts] = useState<NFTItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [totalMinted, setTotalMinted] = useState<number>(0);
 
   const isCorrectNetwork = chainId === base.id;
 
@@ -68,6 +67,7 @@ export default function NFTGallery() {
     const loadNFTs = async () => {
       if (!isConnected || !address || !publicClient || !isCorrectNetwork) {
         setNfts([]);
+        setTotalMinted(0);
         return;
       }
 
@@ -82,6 +82,7 @@ export default function NFTGallery() {
         });
 
         const total = Number(nextTokenId);
+        setTotalMinted(total);
 
         if (total === 0) {
           setNfts([]);
@@ -122,7 +123,7 @@ export default function NFTGallery() {
                 metadata?.description ?? metadataDescription;
               metadataImage = normalizeUrl(metadata?.image);
             } catch {
-              // Оставляем fallback metadata, если JSON не загрузился
+              // fallback metadata
             }
 
             ownedTokens.push({
@@ -133,7 +134,7 @@ export default function NFTGallery() {
               image: metadataImage,
             });
           } catch {
-            // Пропускаем токены, которые не удалось прочитать
+            // skip unreadable token
           }
         }
 
@@ -155,10 +156,29 @@ export default function NFTGallery() {
         <div>
           <h3 className="text-xl font-bold text-zinc-900">My NFT Gallery</h3>
           <p className="mt-1 text-sm text-zinc-600">
-            NFT, которые принадлежат подключённому кошельку.
+            NFT из текущего Base Mainnet контракта.
           </p>
         </div>
       </div>
+
+      {isConnected && isCorrectNetwork && (
+        <div className="rounded-xl bg-white p-3 text-sm text-zinc-700">
+          <p>
+            <span className="font-semibold">Контракт:</span> {CONTRACT_ADDRESS}
+          </p>
+          <p>
+            <span className="font-semibold">Кошелёк:</span> {address}
+          </p>
+          <p>
+            <span className="font-semibold">Всего сминчено в контракте:</span>{" "}
+            {totalMinted}
+          </p>
+          <p>
+            <span className="font-semibold">Найдено у этого кошелька:</span>{" "}
+            {nfts.length}
+          </p>
+        </div>
+      )}
 
       {!isConnected && (
         <p className="text-sm text-red-600">Сначала подключи кошелёк.</p>
@@ -176,7 +196,7 @@ export default function NFTGallery() {
 
       {isConnected && isCorrectNetwork && !isLoading && !error && nfts.length === 0 && (
         <p className="text-sm text-zinc-600">
-          У этого кошелька пока нет NFT из твоего контракта.
+          У этого кошелька пока нет NFT из текущего контракта.
         </p>
       )}
 
