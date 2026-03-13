@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 export async function GET() {
   return Response.json({
     miniapp: {
@@ -7,7 +9,7 @@ export async function GET() {
       iconUrl: "https://my-base-app-seven.vercel.app/og-image.png",
       homeUrl: "https://my-base-app-seven.vercel.app",
       canonicalDomain: "my-base-app-seven.vercel.app",
-      requiredChains: ["eip155:84532"],
-    },
+      requiredChains: ["eip155:84532"]
+    }
   });
 }
