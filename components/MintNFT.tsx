@@ -9,7 +9,7 @@ import {
 } from "wagmi";
 import { base } from "wagmi/chains";
 
-const CONTRACT_ADDRESS = "PASTE_YOUR_BASE_MAINNET_CONTRACT_ADDRESS_HERE";
+const CONTRACT_ADDRESS = "0x5FEAb188881f934e42426DEE399CB99840D4B39c";
 
 const CONTRACT_ABI = [
   {
@@ -45,14 +45,12 @@ export default function MintNFT() {
     });
 
   const isCorrectNetwork = chainId === base.id;
-  const isContractSet =
-    CONTRACT_ADDRESS !== "PASTE_YOUR_BASE_MAINNET_CONTRACT_ADDRESS_HERE";
 
   const handleMint = () => {
-    if (!address || !isContractSet) return;
+    if (!address) return;
 
     writeContract({
-      address: CONTRACT_ADDRESS as `0x${string}`,
+      address: CONTRACT_ADDRESS,
       abi: CONTRACT_ABI,
       functionName: "mint",
       args: [address, tokenUri],
@@ -77,12 +75,6 @@ export default function MintNFT() {
         <p className="text-sm text-red-600">Переключи сеть на Base Mainnet.</p>
       )}
 
-      {!isContractSet && (
-        <p className="text-sm text-red-600">
-          Сначала вставь адрес mainnet-контракта в файл MintNFT.tsx
-        </p>
-      )}
-
       <div className="flex flex-col gap-2">
         <label className="text-sm font-medium text-zinc-700">Token URI</label>
         <input
@@ -96,13 +88,7 @@ export default function MintNFT() {
 
       <button
         onClick={handleMint}
-        disabled={
-          !isConnected ||
-          !isCorrectNetwork ||
-          !isContractSet ||
-          isMinting ||
-          isConfirming
-        }
+        disabled={!isConnected || !isCorrectNetwork || isMinting || isConfirming}
         className="rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 px-4 py-3 font-semibold text-white shadow disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isMinting
